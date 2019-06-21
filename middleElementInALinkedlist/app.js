@@ -26,14 +26,14 @@ while(q.next != null){
 console.log(p.getData());
 
 
-//console.log(q);
 }
-middleElement();
+//middleElement();
 
 let head  = list.getHeadNode();
-head.next.next.next.next = head.next.next;
 
 function detectLoop(){
+    head.next.next.next.next = head.next.next;
+
     let p = head;
     let q = head;
 
@@ -49,6 +49,20 @@ function detectLoop(){
     }
 
 }
-detectLoop()
+//detectLoop()
+
+// function to get 3rd node from end 
+function nthNodeFromEnd(){
+    let n = 3
+    let p =  list.getHeadNode();
+    let q = p.next.next;
+    while(q.next){
+        p = p.next;
+        q = q.next;
+    }
+    console.log(p);
+    return p;
+}
+//nthNodeFromEnd();
 
 app.listen(3000);
