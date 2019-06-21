@@ -30,5 +30,25 @@ console.log(p.getData());
 }
 middleElement();
 
+let head  = list.getHeadNode();
+head.next.next.next.next = head.next.next;
+
+function detectLoop(){
+    let p = head;
+    let q = head;
+
+    while(q.next && q){
+        p = p.next;
+        q = q.next.next;
+        //console.log(p);
+        //console.log(q);
+        if(p == q){
+            console.log(true);
+            return true;
+        }
+    }
+
+}
+detectLoop()
 
 app.listen(3000);
