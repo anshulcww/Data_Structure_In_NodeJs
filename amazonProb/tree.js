@@ -6,13 +6,43 @@ class BinaryTree{
     }
 }
 
-let bt = new BinaryTree(10)
-bt.left = new BinaryTree(20)
-bt.right = new BinaryTree(30)
-bt.left.left = new BinaryTree(40)
-bt.left.right = new BinaryTree(60)
-bt.right.left= new BinaryTree(80)
-bt.right.right= new BinaryTree(50)
+let bt = new BinaryTree(2)
+bt.left = new BinaryTree(7)
+bt.right = new BinaryTree(5)
+//bt.left.left = new BinaryTree(40)
+bt.left.right = new BinaryTree(6)
+bt.left.right.left = new BinaryTree(1)
+bt.left.right.right = new BinaryTree(11)
+//bt.right.left= new BinaryTree(80)
+bt.right.right= new BinaryTree(9)
+bt.right.right.left= new BinaryTree(4)
+
+//Remove Half Nodes
+function removeHalfNodes(node){
+    if(node === null){
+        return null
+    }
+    node.left = removeHalfNodes(node.left)
+    node.right = removeHalfNodes(node.right)
+    //check for leaf node
+    if(node.left === null && node.right === null){
+        return node
+    }
+    //check for half node for Left
+    if(node.left === null){
+        let newNode  = node.right
+        return newNode
+    }
+    
+    //check for half node for right
+    if(node.right === null){
+        let newNode  = node.left
+        return newNode
+    }
+    return node
+}
+let result = removeHalfNodes(bt)
+let inOrderResult = inOrderTrav(result)
 
 // Diagonal sum of a BT
 function diagonalSum(node){
@@ -44,7 +74,7 @@ function diagonalSum(node){
         }
     }
 }
-diagonalSum(bt)
+//diagonalSum(bt)
 
 //Max nodes level
 function maxNodeLevel(node){
