@@ -6,16 +6,153 @@ class BinaryTree{
     }
 }
 
-let bt = new BinaryTree(2)
-bt.left = new BinaryTree(7)
-bt.right = new BinaryTree(5)
-//bt.left.left = new BinaryTree(40)
-bt.left.right = new BinaryTree(6)
-bt.left.right.left = new BinaryTree(1)
-bt.left.right.right = new BinaryTree(11)
-//bt.right.left= new BinaryTree(80)
-bt.right.right= new BinaryTree(9)
-bt.right.right.left= new BinaryTree(4)
+let bt = new BinaryTree(10)
+bt.left = new BinaryTree(-2)
+bt.right = new BinaryTree(6)
+bt.left.left = new BinaryTree(8)
+bt.left.right = new BinaryTree(-4)
+// bt.left.right.left = new BinaryTree(1)
+// bt.left.right.right = new BinaryTree(11)
+bt.right.left= new BinaryTree(7)
+bt.right.right= new BinaryTree(5)
+// bt.right.right.left= new BinaryTree(4)
+
+let h =0
+
+// Reverse Level Order
+function reverseLevelOrderTrav(node){
+    let q = []
+    let s = []
+    q.push(node)
+    while(q.length > 0){
+        let curr = q.shift()
+        s.push(curr.data)
+        if(curr.right){
+            q.push(curr.right)
+        }
+        if(curr.left){
+            q.push(curr.left)
+        }
+    }
+    console.log(s.reverse())
+    // for(var i = s.length-1; i<=0; i-- ){
+    //     console.log(s[i])
+    // }
+}
+
+//reverseLevelOrderTrav(bt)
+
+// Convert to Sum Tree
+function convertToSum(node){
+    if(node === null){
+        return 0
+    }
+    let oldValue = node.data
+    node.data = convertToSum(node.left) + convertToSum(node.right)
+    return node.data + oldValue
+}
+let res = convertToSum(bt)
+// console.log(res)
+//inOrderTrav(bt)
+
+
+// Check if a bt is a sumtree
+function sumTree(node){
+    if(node === null){
+        return 1
+    }
+    //for leaf node
+    if(node.left === null && node.right === null){
+        return 1
+    }
+
+    let leftSum = sum(node.left)
+    let rightSum = sum(node.right)
+    let total = leftSum + rightSum
+    if(total.data === node.data){
+        if(sumTree(node.left) && sumTree(node.right)){
+            return 1
+        }
+    }
+    return 0
+}
+
+//let bool = sumTree(bt)
+//console.log(bool)
+
+// Sum of all node
+function sum(node){
+    if(node === null){
+        return 0;
+    }
+    // console.log(node.data)
+    let result = node.data + sum(node.left) + sum(node.right);
+    return result
+}
+//let result2  = sum(bt)
+//console.log(result2)
+
+
+
+
+//Left View of BT
+function leftView(node){
+    if(node === null){
+        return null
+    }
+    let q = []
+    q.push(node)
+    while(q.length > 0){
+        let n = q.length
+        for(var i = 1; i <= n; i++){
+            // console.log('anshul')
+            let top = q.shift()
+            if(i === n){
+                console.log(top.data)
+                
+            }
+            if(top.left){
+                q.push(top.left)
+            }
+            if(top.right){
+                q.push(top.right)
+            }
+        }
+    }
+}
+// leftView(bt)
+
+// Diameter of BT
+function diameter(node){
+    if(node === null){
+        return 0
+    }
+    let lHeight = height(node.left);
+    let rHeight = height(node.right);
+
+    let lDiameter = diameter(node.left);
+    let rDiameter = diameter(node.right)
+
+    return Math.max(1+lHeight+rHeight , Math.max(lDiameter, rDiameter))
+}
+// let result1 = diameter(bt)
+// console.log(result1)
+
+
+//Sum of Left leaf Nodes
+function sumOfLeftLeaf(node){
+    if(node == null){
+        return 0
+    }else if(node.left !=null && node.left.left === null && node.left.right === null){
+        return node.left.data + sumOfLeftLeaf(node.right)
+    }else{
+        return sumOfLeftLeaf(node.left) + sumOfLeftLeaf(node.right)
+    }
+}
+// let result = sumOfLeftLeaf(bt)
+// console.log(result)
+
+// Try Height of a special tree when you revise again
 
 //Remove Half Nodes
 function removeHalfNodes(node){
@@ -41,8 +178,8 @@ function removeHalfNodes(node){
     }
     return node
 }
-let result = removeHalfNodes(bt)
-let inOrderResult = inOrderTrav(result)
+// let result = removeHalfNodes(bt)
+// let inOrderResult = inOrderTrav(result)
 
 // Diagonal sum of a BT
 function diagonalSum(node){
@@ -279,7 +416,6 @@ function inOrderTrav(bt){
 
 
 // Height of a binary tree
-let h =0
 function height(node){
     if(node === null){
         return 0
