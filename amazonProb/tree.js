@@ -3,21 +3,156 @@ class BinaryTree{
         this.data = data
         this.left = null
         this.right = null
+        // For Min Depth Question
+        this.depth = 1
     }
 }
 
-let bt = new BinaryTree(10)
-bt.left = new BinaryTree(-2)
-bt.right = new BinaryTree(6)
+let bt = new BinaryTree(1)
+bt.left = new BinaryTree(2)
+bt.right = new BinaryTree(3)
 bt.left.left = new BinaryTree(8)
-bt.left.right = new BinaryTree(-4)
-// bt.left.right.left = new BinaryTree(1)
-// bt.left.right.right = new BinaryTree(11)
-bt.right.left= new BinaryTree(7)
+bt.left.right = new BinaryTree(4)
+bt.left.left.left = new BinaryTree(1)
+bt.left.left.right =  new BinaryTree(11)
+bt.left.right.left = new BinaryTree(1)
+bt.left.right.right = new BinaryTree(11)
+bt.right.left= new BinaryTree(5)
+bt.right.left.left = new BinaryTree(6)
+bt.right.left.right = new BinaryTree(67)
 bt.right.right= new BinaryTree(5)
-// bt.right.right.left= new BinaryTree(4)
+bt.right.right.left= new BinaryTree(4)
+bt.right.right.right = new BinaryTree(100)
+
+
+//Leaf at same level
+
+
+//Odd Even Level difference
+function oddEvenLevelDiff(node){
+    let q = [];
+    q.push(node);
+    let oddSum = 0
+    let evenSum = 0
+    while(q.length > 0){
+        let top = q.shift()
+        if(top.depth % 2 === 0){
+            evenSum = evenSum + top.data
+        }else{
+            oddSum = oddSum + top.data
+        }
+        if(top.left){
+            top.left.depth = top.depth + 1;
+            q.push(top.left)
+        }
+        if(top.right){
+            top.right.depth = top.depth + 1;
+            q.push(top.right)
+        }
+    }
+    console.log(oddSum - evenSum)
+}
+//oddEvenLevelDiff(bt)
+
+
+
+//Minimun Depth of a BT
+function minDepth(node){
+    let q = []
+    q.push(node)
+    while(q.length >0){
+        let top = q.shift()
+        //check for leaf node
+        if(top.left === null && top.right === null){
+            console.log(top.depth)
+            return top.depth
+        }
+        if(top.left){
+            top.left.depth = top.depth + 1;
+            q.push(top.left)
+        }
+        if(top.right){
+            top.right.depth = top.depth + 1;
+            q.push(top.right)
+        }
+    }
+}
+// minDepth(bt)
+
+
+// Print singles
+function singles(node){
+    if(node === null){
+        return
+    }
+    if(node.left !== null && node.right !== null){
+        singles(node.left)
+        singles(node.right)
+    }else if(node.right !== null){
+        console.log(node.right.data)
+        singles(node.right)
+    }else if(node.left !== null){
+        console.log(node.left.data)
+        singles(node.left)
+    }
+
+}
+//singles(bt)
+
+
 
 let h =0
+
+// Root to leaf using Inorder & stack
+let currSum = 0
+let stack = []
+function rootToLeaf(node, k){
+    if(node === null){
+        return 
+    }
+    currSum = currSum + node.data
+    stack.push(node.data)
+    if(currSum === k){
+        console.log(stack)
+        //return stack
+    }
+    //console.log(stack)
+    rootToLeaf(node.left, k)
+    rootToLeaf(node.right, k)
+    currSum = currSum - node.data
+    stack.pop()
+}
+//rootToLeaf(bt, 121)
+
+
+// Identical Bt 
+function checkIdentical(node1, node2){
+    if(node1 === null && node2 === null){
+        return 1
+    }
+    if(node1 !== null && node2 !== null){
+        if(node1.data === node2.data && checkIdentical(node1.left, node2.left) && checkIdentical(node1.right, node2.right)){
+            return 1
+        }
+    }
+    return 0
+}
+//checkIdentical(bt1, bt2)
+
+// Reverse Alternate levels
+function reverseAlter(node1, node2, lvl){
+    if(node1 === null || node2 === null){
+        return false
+    }
+    if(lvl%2 === 0){
+        let temp = node1.data
+        node1.data = node2.data
+        node2.data = temp
+    }
+    reverseAlter(node1.left, node2.right, lvl+1)
+}
+//reverseAlter(bt.left, bt.right, 0)
+//inOrderTrav(bt)
 
 // Reverse Level Order
 function reverseLevelOrderTrav(node){
