@@ -21,9 +21,35 @@ bt.right.left= new BinaryTree(5)
 bt.right.left.left = new BinaryTree(6)
 bt.right.left.right = new BinaryTree(67)
 bt.right.right= new BinaryTree(5)
-// bt.right.right.left= new BinaryTree(4)
-// bt.right.right.right = new BinaryTree(100)
+bt.right.right.left= new BinaryTree(4)
+bt.right.right.right = new BinaryTree(100)
 
+//Bottom View of Binary tree
+
+
+
+//Convert from inOrder and post order to Binary tree
+let inOrder = [4, 8, 2, 5, 1, 6, 3, 7 ]
+let postOrder = [8, 4, 5, 2, 6, 7, 3, 1]
+let postOrderIndex = postOrder.length - 1
+function buildTreeFromInAndPost(inOrderArr, postOrderArr, start, end){
+    if(start > end){
+        return
+    }
+
+    let newBtNode = new BinaryTree(postOrderArr[postOrderIndex--])
+    
+    if(start === end){
+        return newBtNode
+    }
+    let index = inOrderArr.indexOf(newBtNode.data)
+    newBtNode.right = buildTreeFromInAndPost(inOrderArr, postOrderArr, index+1, end)
+    newBtNode.left = buildTreeFromInAndPost(inOrderArr, postOrderArr, start, index-1)
+    return newBtNode
+}
+
+// let result  = buildTreeFromInAndPost(inOrder, postOrder, 0, inOrder.length -1)
+// preOrderTrav(result);
 // Evaluation of Expression Tree
 function eval(node){
     if(node === null){
@@ -96,7 +122,7 @@ function checkSameLevelLeaf(node){
     console.log(q)
     return true
 }
-console.log(checkSameLevelLeaf(bt))
+//console.log(checkSameLevelLeaf(bt))
 
 //Odd Even Level difference
 function oddEvenLevelDiff(node){
@@ -256,7 +282,7 @@ function convertToSum(node){
     node.data = convertToSum(node.left) + convertToSum(node.right)
     return node.data + oldValue
 }
-let res = convertToSum(bt)
+// let res = convertToSum(bt)
 // console.log(res)
 //inOrderTrav(bt)
 
@@ -537,13 +563,22 @@ function verticalOrder(node){
             queue.push(obj)
         }
     }
-    console.log(hd)
+    // console.log(hd)
+    return hd
 }
-//verticalOrder(bt)
+// let resultOrder = verticalOrder(bt)
+// // console.log(resultOrder)
+// bottomView(resultOrder)
+
+function bottomView(hdMap){
+    for(var hd of hdMap){
+        console.log(hd[1][hd[1].length - 1])
+    }
+}
 // Construct a Binary tree from pre order and inorder traversal
-let inOrder = [3, 1, 4, 0, 5, 2, 6];
-let preOrder = [0, 1, 3, 4, 2, 5, 6];
-let preIndex = 0;
+// let inOrder = [3, 1, 4, 0, 5, 2, 6];
+// let preOrder = [0, 1, 3, 4, 2, 5, 6];
+// let preIndex = 0;
 
 function buildTree(inArray, preArray, start, end){
     if(start > end){
