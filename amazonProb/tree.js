@@ -21,12 +21,82 @@ bt.right.left= new BinaryTree(5)
 bt.right.left.left = new BinaryTree(6)
 bt.right.left.right = new BinaryTree(67)
 bt.right.right= new BinaryTree(5)
-bt.right.right.left= new BinaryTree(4)
-bt.right.right.right = new BinaryTree(100)
+// bt.right.right.left= new BinaryTree(4)
+// bt.right.right.right = new BinaryTree(100)
+
+// Evaluation of Expression Tree
+function eval(node){
+    if(node === null){
+        return
+    }
+    if(node.left === null && node.right === null){
+        return node.data
+    }
+    let leftEval = eval(node.left)
+    let rightEval = eval(node.right)
+    if(node.data === '+'){
+        return leftEval + rightEval
+    }
+    if(node.data === '-'){
+        return leftEval - rightEval
+    }
+    
+    if(node.data === '*'){
+        return leftEval * rightEval
+    }
+    return leftEval/rightEval
+}
 
 
-//Leaf at same level
-
+// LEaf at same level
+function checkSameLevelLeaf(node){
+    let q = []
+    let level = 1
+    let result = -1
+    q.push(node)
+    q.push(null)
+    while(q.length> 0){
+        let top = q.shift()
+        if(top === null){
+            q.push(null)
+            level++
+            if(q[0] === null){
+                break
+            }
+            // console.log(level)
+        }else {
+            if(top.left){
+                // console.log('anshul')
+                q.push(top.left)
+                //check for left leaf node
+                if(top.left.left === null && top.left.right === null){
+                    if(result === -1){
+                        result = level
+                    }else if(result != level){
+                        return false
+                    }
+                } 
+            
+            }
+            if(top.right){
+                q.push(top.right)
+                //check for left leaf node
+                if(top.right.left === null && top.right.right === null){
+                    if(result === -1 ){
+                        result = level
+                    }else if(result != level){
+                        return false
+                    }
+                } 
+            
+            }
+        }
+        
+    }
+    console.log(q)
+    return true
+}
+console.log(checkSameLevelLeaf(bt))
 
 //Odd Even Level difference
 function oddEvenLevelDiff(node){
