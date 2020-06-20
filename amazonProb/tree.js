@@ -24,8 +24,21 @@ bt.right.right= new BinaryTree(5)
 bt.right.right.left= new BinaryTree(4)
 bt.right.right.right = new BinaryTree(100)
 
-//Bottom View of Binary tree
 
+
+
+// Check if binary tree is balanced
+function isBalance(node){
+    if(node === null){
+        return true
+    }
+    let lh = height(node.left)
+    let rh = height(node.right)
+    if(Math.abs(lh-rh) <= 1 && isBalance(node.left) && isBalance(node.right)){
+        return true
+    }
+    return false
+}
 
 
 //Convert from inOrder and post order to Binary tree
