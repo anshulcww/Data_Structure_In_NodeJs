@@ -15,16 +15,46 @@ bt.left.left = new BinaryTree(8)
 bt.left.right = new BinaryTree(4)
 bt.left.left.left = new BinaryTree(1)
 bt.left.left.right =  new BinaryTree(11)
-bt.left.right.left = new BinaryTree(1)
-bt.left.right.right = new BinaryTree(11)
-bt.right.left= new BinaryTree(5)
-bt.right.left.left = new BinaryTree(6)
-bt.right.left.right = new BinaryTree(67)
-bt.right.right= new BinaryTree(5)
-bt.right.right.left= new BinaryTree(4)
-bt.right.right.right = new BinaryTree(100)
+// bt.left.right.left = new BinaryTree(1)
+// bt.left.right.right = new BinaryTree(11)
+// bt.right.left= new BinaryTree(5)
+// bt.right.left.left = new BinaryTree(6)
+// bt.right.left.right = new BinaryTree(67)
+// bt.right.right= new BinaryTree(5)
+// bt.right.right.left= new BinaryTree(4)
+// bt.right.right.right = new BinaryTree(100)
 
+class DoublyLinkedList{
+    constructor(data){
+        this.data = data
+        this.left = null
+        this.right = null
+    }
+}
 
+// let dll = new DoublyLinkedList()
+//convert binary tree into doubly linked list
+let head =null
+function convertBinaryToDLL(node){
+    if(node === null){
+        return
+    }
+    let prev = null
+    convertBinaryToDLL(node.left)
+    if(prev === null){
+        // let dll = new DoublyLinkedList(node)
+        head = node
+    }else{
+        node.left = prev
+        prev.right = node
+    }
+    prev = node
+    console.log(head    )
+    convertBinaryToDLL(node.right)
+
+}
+convertBinaryToDLL(bt)
+console.log(head)
 
 
 // Check if binary tree is balanced

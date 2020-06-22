@@ -6,6 +6,39 @@ class MinHeap{
     getMin(){
         return this.heap[1]
     }
+    buildHeap(size, arr){
+        // let s = arr.length-1 
+        // console.log(arr)
+        for(var i=Math.floor(size/2 -1); i>=0; i--){
+            //console.log('Anshul')
+            this.heapify(i, arr, size)
+        }
+        // console.log(arr)
+    }
+    
+    heapify(i, arr, size){
+       // console.log(i)
+        if(i >= size/2){
+            return false
+        }
+        let smallest = i
+        let left = 2*i+1
+        let right = 2*i+2
+        // console.log(i)
+        if(arr && arr[left] < arr[smallest]){
+            smallest = left
+        }
+        if(arr && arr[right] < arr[smallest]){
+            smallest = right
+        }
+        if(smallest !== i){
+            let temp = arr[smallest]
+            arr[smallest] = arr[i]
+            arr[i] = temp
+            this.heapify(smallest, arr, size)
+        }
+    }
+
     insert(node){
         //Inserting a node at the last of an array
         this.heap.push(node)
@@ -20,6 +53,7 @@ class MinHeap{
             }
         }
     }
+
 }
 
 // let minHeap  = new MinHeap()
@@ -33,14 +67,45 @@ class MinHeap{
 
 //Kth largest element in an array
 function kthLargest(arr, k){
-    let minHeap  = new MinHeap();
-
-    for(var i = 0; i<k; i++){
-        minHeap.insert(arr[i])
+    let minHeapArr = []
+    for(var i =0; i<k; i++){
+        minHeapArr[i] = arr[i]
     }
-    console.log(minHeap)
-
+    let minHeap = new MinHeap()
+    minHeap.buildHeap(k, minHeapArr)
+    // console.log(MinHeap)
+     // Loop For each element in array 
+    // after the kth element 
+    //console.log(arr)
+    // for (var j = 0; j < k; j++) { 
+    //     //cout << arr[i] << " "; 
+    //     console.log(arr[j])
+    // }  
+    for (var i = k; i < arr.length; i++) { 
+        // console.log(arr[k])
+        // if current element is smaller  
+        // than minimum element, do nothing  
+        // and continue to next element 
+        if (minHeapArr[0] > arr[i]) 
+            continue; 
+  
+        // Otherwise Change minimum element to  
+        // current element, and call heapify to 
+        // restore the heap property 
+        else { 
+            minHeapArr[0] = arr[i];
+            // let temp = arr[0]
+            // arr[0] = arr[i]
+            // arr[i] = temp
+            minHeap.heapify(0, minHeapArr, k); 
+        } 
+    }
+    for (var j = 0; j < k; j++) { 
+        //cout << arr[i] << " "; 
+        console.log(minHeapArr[j])
+    }  
 }
-kthLargest([1, 23, 12, 9, 30, 2, 50], 3)
+
+kthLargest([101, 500, 435, 15, 100, 200 , 600 , 112, 56, 23], 9)
 
 
