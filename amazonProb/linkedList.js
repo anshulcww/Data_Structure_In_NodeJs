@@ -137,16 +137,85 @@ class ListNode{
         this.next = null
     }
 }
+
+let reverseHead = null;
+
 var ll = new ListNode(1)
-ll.next = new ListNode(9)
-ll.next.next = new ListNode(9)
-ll.next.next.next = new ListNode(9)
-// ll.next.next.next.next = new ListNode(1)
-// ll.next.next.next.next.next = new ListNode(2)
+ll.next = new ListNode(2)
+ll.next.next = new ListNode(3)
+ll.next.next.next = new ListNode(4)
+ll.next.next.next.next = new ListNode(5)
+ll.next.next.next.next.next = new ListNode(6)
 // ll.next.next.next.next.next.next = new ListNode(2)
 // ll.next.next.next.next.next.next.next = new ListNode(0)
 
-let reverseHead = null;
+function countTotalNodes(head){
+    let currCount = 0
+    if(head === null){
+        return currCount
+    }
+    let p =  head
+    while(p !== null){
+        currCount++;
+        p = p.next
+    }
+    return currCount
+}
+
+// Swap Kth node from beginning with Kth node from end in a Linked List
+function swapKth(nodeList, k){
+    // Count total nodes
+    let count = countTotalNodes(nodeList)
+    //console.log(count, 'count')
+    if(k > count){
+        return false
+    }
+    
+    // If x (kth node from start) and y(kth node from end) 
+    // are same 
+    if (2*k - 1 == count){ 
+        return false;
+    }
+
+    // kth node from begining (X)
+    let x = nodeList
+    let xPrev = null
+    for(var i = 1; i < k; i++){
+        xPrev = x
+        x= x.next
+    }
+
+    //Kth node from the end
+    let y = nodeList
+    let yPrev = null
+    for(var i = 1; i<count-k +1; i++){
+        yPrev = y
+        y = y.next
+    }
+    
+    // If x_prev exists, then new next of it will be y. 
+    // Consider the case when y->next is x, in this case, 
+    // x_prev and y are same. So the statement  
+    // "x_prev->next = y" creates a self loop. This self 
+    // loop will be broken when we change y->next.
+    
+    if(xPrev != null){
+        xPrev.next = y
+    }
+    
+    if(yPrev != null){
+        yPrev.next = x
+    }
+
+    // Swap
+    let temp = x.next
+    x.next = y.next
+    y.next = temp
+    console.log(JSON.stringify(nodeList))
+    return nodeList
+}
+//swapKth(ll, 2)
+
 
 //Add 1 number represented linked list
 function addOne(head){
@@ -175,8 +244,8 @@ function addOneUtil(head){
     }
     return res
 }
-let result = addOne(ll)
-console.log(JSON.stringify(result))
+//let result = addOne(ll)
+//console.log(JSON.stringify(result))
 
 //Given a linked list of 0s, 1s and 2s, sort it. 
 function sortLL(head){
