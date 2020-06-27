@@ -149,6 +149,8 @@ ll.next.next.next.next.next = new ListNode(6)
 // ll.next.next.next.next.next.next = new ListNode(2)
 // ll.next.next.next.next.next.next.next = new ListNode(0)
 
+
+
 function countTotalNodes(head){
     let currCount = 0
     if(head === null){
