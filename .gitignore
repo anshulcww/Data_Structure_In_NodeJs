@@ -1,5 +1,5 @@
-coinChangeProb/node_modules
-eggDroppingPuzzle/node_modules
+./coinChangeProb/node_modules
+./eggDroppingPuzzle/node_modules
 kth_largest_element/node_modules
 longestCommonSubstring/node_modules
 middleElementInALinkedList/node_modules
