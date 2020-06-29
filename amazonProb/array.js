@@ -1,6 +1,8 @@
 
 //Find the smallest window in a string containing all characters of another string
-
+// Brute Force
+// Generate all substrings
+// function smallest
 
 // Optimise solution for Count Number of occurence in a sorted array Time Complexity O(log(n))
 // Idea is Get First occurence and Last Occurence and return last Occurence - First Occurence + 1
