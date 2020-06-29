@@ -1,8 +1,9 @@
 ./coinChangeProb/node_modules
 ./eggDroppingPuzzle/node_modules
-kth_largest_element/node_modules
-longestCommonSubstring/node_modules
-middleElementInALinkedList/node_modules
-nextLargerElement/node_modules
-rainWaterTrap/node_modules
-ratInAMaze/node_modules
+./kth_largest_element/node_modules
+./longestCommonSubstring/node_modules
+./middleElementInALinkedList/node_modules
+./nextLargerElement/node_modules
+./rainWaterTrap/node_modules
+./ratInAMaze/node_modules
+./amazonProb/node_modules
