@@ -1,7 +1,78 @@
-let matrix = [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18]]
+
+
+
+// Celebrity Problem
+let matrix = [[0,0,1,0],[0,0,1,0], [0,1,0,0], [0,0,1,0]]
+
+// Optimezed solution
+function checkCelebrityOptimized(){
+    // 2 Conditions
+    // If X knows Y , then Y must not be the celebrity
+    // If X doesn't knows Y, then X might be the Celebrity
+    let x = 0
+    let y = matrix.length - 1
+    
+    while(x<y){
+        if(knows(x,y)){
+            x++
+        }else{
+            y--
+        }
+    }
+    for(var i =0; i<matrix.length; i++){
+        if(i != x && (knows(x,i) || !knows(i,x))){
+            return "No Celebrity"
+        }
+    }
+    return "The celebrity is " + x
+}
+console.log(checkCelebrityOptimized())
+
+// Brute Force Celebrity Problem
+function checkCelebrity(){
+    let m = new Map()
+    m.set(0, 0)
+    m.set(1,0)
+    m.set(2,0)
+    m.set(3,0)
+    for(var i =0; i<matrix.length; i++){
+        for(var j = 0; j<matrix[0].length; j++){
+            if( j === i){
+                continue
+            }
+            let index = knows(i,j)
+            // console.log("Ansh")
+            if(index === 1){
+                m.set(i, 1)
+            }
+        }
+    }
+    // console.log(m, "anshuijnok")
+    let count = 0
+    for(var x of m){
+        if(x[1] === 0){
+            count++
+            console.log("the celebrity is " + x[0])
+        }
+    }
+    if(count === 0) {
+        console.log("No celebrity")
+    }
+}
+// helper function
+function knows(a,b){
+    if(matrix[a][b] === 1){
+        return 1
+    }else{
+        return 0
+    }
+}
+// checkCelebrity()
 
 
 // Print K’th element in spiral form of matrix
+// let matrix = [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18]]
+
 function kthElementInSpiralForm(mat, k){
     let row = 0
     let col = 0
