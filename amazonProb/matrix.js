@@ -1,8 +1,56 @@
 
+// Search in a row wise and column wise sorted matrix
+let searchMatrix = [[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]
+function searchInMatrix(k){
+    let i = 0;
+    let j = searchMatrix.length - 1
 
+    while(i < searchMatrix.length && i >= 0 && j >= 0 && j<searchMatrix.length){
+        if(searchMatrix[i][j] === k){
+            return i + " " + j
+        }else if(searchMatrix[i][j] > k){
+            j--
+        }else if(searchMatrix[i][j] < k){
+            i++
+        }
+    }
+    return -1
+}
+console.log(searchInMatrix(55))
+
+
+// Sliding Window Maximum (Maximum of all subarrays of size k)
+
+let array = [1, 2, 3,1, 4, 5, 2,3, 6]
+let k = 3
+
+// // Using Deque Optimized soltuion later
+// function maxSubArrayOptimised(){
+
+// }
+
+// Using Brute force
+function maxSubArray(){
+    for(var i = 0; i<=array.length-k; i++){
+        let subArray = []
+        // subArray.push(array[i])
+        let max = array[i]
+        for(var j = i; j<i+k; j++){
+            subArray.push(array[j])
+            // console.log(i, j)
+            if(max < array[j]){
+                max = array[j]
+            }
+        }
+        // console.log(i)
+        console.log("Max of " + subArray + " is " + max)
+    } 
+}
+
+// maxSubArray()
 
 // Celebrity Problem
-let matrix = [[0,0,1,0],[0,0,1,0], [0,1,0,0], [0,0,1,0]]
+// let matrix = [[0,0,1,0],[0,0,1,0], [0,1,0,0], [0,0,1,0]]
 
 // Optimezed solution
 function checkCelebrityOptimized(){
@@ -14,9 +62,9 @@ function checkCelebrityOptimized(){
     
     while(x<y){
         if(knows(x,y)){
-            x++
+            x++;
         }else{
-            y--
+            y--;
         }
     }
     for(var i =0; i<matrix.length; i++){
@@ -26,7 +74,7 @@ function checkCelebrityOptimized(){
     }
     return "The celebrity is " + x
 }
-console.log(checkCelebrityOptimized())
+// console.log(checkCelebrityOptimized())
 
 // Brute Force Celebrity Problem
 function checkCelebrity(){

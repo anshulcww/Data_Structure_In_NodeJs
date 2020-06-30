@@ -56,6 +56,20 @@ class MinHeap{
 
 }
 
+// kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array
+let matrix = [[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]
+
+// function kthLargestIn2D(key){
+//     let minHeapArray = []
+//     for(var i = 0; i<matrix.length; i++){
+//         minHeapArray[i] = matrix[0][i]
+//     }
+//     let minHeap = new MinHeap()
+//     minHeap.buildHeap(minHeap.length, minHeapArray)
+    
+// }
+// kthSmallestIn2D(7)
+
 // let minHeap  = new MinHeap()
 // minHeap.insert(20)
 // minHeap.insert(10)
@@ -66,6 +80,7 @@ class MinHeap{
 // console.log(minHeap)
 
 //Kth largest element in an array
+
 function kthLargest(arr, k){
     let minHeapArr = []
     for(var i =0; i<k; i++){

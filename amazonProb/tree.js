@@ -13,7 +13,7 @@ bt.left = new BinaryTree(2)
 bt.right = new BinaryTree(3)
 bt.left.left = new BinaryTree(8)
 bt.left.right = new BinaryTree(4)
-bt.left.left.left = new BinaryTree(1)
+bt.left.left.left = new BinaryTree(10)
 bt.left.left.right =  new BinaryTree(11)
 // bt.left.right.left = new BinaryTree(1)
 // bt.left.right.right = new BinaryTree(11)
@@ -23,6 +23,25 @@ bt.left.left.right =  new BinaryTree(11)
 // bt.right.right= new BinaryTree(5)
 // bt.right.right.left= new BinaryTree(4)
 // bt.right.right.right = new BinaryTree(100)
+
+// Find a pair with given sum in BST
+function findPair(node, sum, set){
+    if(node === null){
+        return false
+    }
+    if(set.has(sum - node.data)){
+        console.log("Anshul")
+        console.log("Pair is " + Number(sum-node.data) + " , " + node.data)
+        return false
+    }else{
+        set.add(sum - node.data)
+    }
+    findPair(node.left, sum, set)
+    findPair(node.right, sum, set)
+}
+var set = new Set()
+findPair(bt, 11, set)
+
 
 class DoublyLinkedList{
     constructor(data){
@@ -53,8 +72,8 @@ function convertBinaryToDLL(node){
     convertBinaryToDLL(node.right)
 
 }
-convertBinaryToDLL(bt)
-console.log(head)
+// convertBinaryToDLL(bt)
+// console.log(head)
 
 
 // Check if binary tree is balanced

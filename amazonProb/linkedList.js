@@ -149,7 +149,52 @@ ll.next.next.next.next.next = new ListNode(6)
 // ll.next.next.next.next.next.next = new ListNode(2)
 // ll.next.next.next.next.next.next.next = new ListNode(0)
 
+var ll2 = new ListNode(9)
+ll2.next = new ListNode(10)
+ll2.next.next = new ListNode(11)
+ll2.next.next.next = new ListNode(12)
+ll2.next.next.next.next = new ListNode(13)
 
+// Add Two Linked List 
+function addTwoLL(node1, node2){
+    if(node1 === null){
+        return node2
+    }
+    if(node2 === null){
+        return node1
+    }
+    if(node1 == null && node2 == null){
+        return null
+    }
+    let resSumLL = null
+    let prev = null
+    let sum = 0
+    let carry = 0
+    while(node1 != null || node2 != null){
+        let p = node1 != null ? node1.val : 0
+        let q = node2 != null ? node2.val : 0
+        sum = p + q + carry
+        console.log(sum  + " " + carry)
+        carry = sum >= 10 ? 1 : 0
+        sum = sum % 10
+        let temp = new Node(sum)
+        if(resSumLL === null){
+            resSumLL = temp
+        }else{
+            prev.next = temp
+        }
+        prev = temp
+        if(node1 != null){
+            node1 = node1.next
+        }
+        if(node2 != null){
+            node2 = node2.next
+        }
+    }
+    console.log(JSON.stringify(resSumLL))
+    return resSumLL
+}
+addTwoLL(ll, ll2)
 
 function countTotalNodes(head){
     let currCount = 0
