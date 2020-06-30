@@ -1,4 +1,44 @@
 
+// Peak Element very important
+function findPeak(arr){
+    let start = 0
+    let end = arr.length - 1
+    // [5, 10, 20, 15]
+    while(start <= end){
+        let mid = Math.floor(start + (end - start)/2)
+        // console.log(mid)
+        if(mid > 0 && mid < arr.length-1){
+            if(arr[mid-1] < arr[mid] && arr[mid+1] < arr[mid] ){
+                console.log("Peak element is " +  arr[mid])
+                return mid
+            }else if(arr[mid-1] > arr[mid]){
+                end = mid -1
+            }else{
+                start = mid + 1
+            }
+        }else if(mid == 0){
+            if(arr[mid + 1] < arr[mid]){
+                console.log("Peak element is " +  arr[mid])
+                return 0
+            }else{
+                return 1
+            }
+        }else if(mid === arr.length - 1){
+            if(arr[mid - 1] < arr[mid]){
+                console.log("Peak element is " +  arr[mid])
+                return mid
+            }else{
+                console.log("Peak element is " +  arr[mid])
+                return mid - 1
+            }
+        }
+        
+    }
+}
+findPeak([100, 80, 60, 50, 20])
+
+
+
 //Find the smallest window in a string containing all characters of another string
 // Brute Force
 // Generate all substrings
