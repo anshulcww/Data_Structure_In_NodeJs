@@ -1,6 +1,6 @@
 
 // Search in a row wise and column wise sorted matrix
-let searchMatrix = [[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]
+// let searchMatrix = [[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]
 function searchInMatrix(k){
     let i = 0;
     let j = searchMatrix.length - 1
@@ -16,7 +16,7 @@ function searchInMatrix(k){
     }
     return -1
 }
-console.log(searchInMatrix(55))
+// console.log(searchInMatrix(55))
 
 
 // Sliding Window Maximum (Maximum of all subarrays of size k)
@@ -107,6 +107,7 @@ function checkCelebrity(){
         console.log("No celebrity")
     }
 }
+
 // helper function
 function knows(a,b){
     if(matrix[a][b] === 1){
