@@ -1,3 +1,27 @@
+// Minimum jump to reach end
+function minJump(input){
+    let minJumps = [0]
+    let path = []
+    for(var i = 1; i <input.length; i++){
+        minJumps[i] = Number.MAX_VALUE
+    }
+    for(var i = 1; i<input.length; i++){
+        let j = 0;
+        while(j < i){
+            if(i <= j + input[j]){
+                if(minJumps[i] > minJumps[j] + 1){
+                    minJumps[i] = minJumps[j] + 1;
+                    path[i] = j
+                }
+            }
+            j++
+        }
+    }
+    console.log(path)
+    return minJumps
+}
+console.log(minJump([2, 3, 1, 1, 2, 4, 2, 0, 1, 1]))
+
 
 // Max rectangle histogram area
 var input = [1,1,2,3]
@@ -55,4 +79,4 @@ function maxSumSub(arr){
 
 }
 
-console.log(maxSumSub([4, 1 ,1,4, 2, 1]))
+// console.log(maxSumSub([4, 1 ,1,4, 2, 1]))

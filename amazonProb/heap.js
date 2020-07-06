@@ -13,6 +13,8 @@ class MinHeap{
             //console.log('Anshul')
             this.heapify(i, arr, size)
         }
+        console.log(arr)
+        return arr
         // console.log(arr)
     }
     
@@ -38,46 +40,35 @@ class MinHeap{
             this.heapify(smallest, arr, size)
         }
     }
-
-    insert(node){
-        //Inserting a node at the last of an array
-        this.heap.push(node)
-        if(this.heap.length > 1){
-            let current  = this.heap.length - 1
-            while(current > 1 && this.heap[Math.floor(current/2)] > this.heap[current]){
-                //Swapping 
-                let temp = this.heap[Math.floor(current/2)]
-                this.heap[Math.floor(current/2)] = this.heap[current]
-                this.heap[current] = temp
-                current = Math.floor(current/2)
-            }
-        }
+    remove(arr){
+        let end = arr.pop()
+        arr[0] = end
+        this.heapify(0, arr, arr.length)
+        return arr
     }
 
 }
 
+// Kth 
+let minHeap = new MinHeap()
+let res = minHeap.buildHeap(4, [130, 20, 30, 40])
+console.log(minHeap.remove(res))
+
+
+
 // kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array
 let matrix = [[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]
 
-// function kthLargestIn2D(key){
-//     let minHeapArray = []
-//     for(var i = 0; i<matrix.length; i++){
-//         minHeapArray[i] = matrix[0][i]
-//     }
-//     let minHeap = new MinHeap()
-//     minHeap.buildHeap(minHeap.length, minHeapArray)
+function kthSmallestIn2D(key){
+    let minHeapArray = []
+    for(var i = 0; i<matrix.length; i++){
+        minHeapArray[i] = matrix[0][i]
+    }
+    let minHeap = new MinHeap()
+    minHeap.buildHeap(minHeap.length, minHeapArray)
     
-// }
+}
 // kthSmallestIn2D(7)
-
-// let minHeap  = new MinHeap()
-// minHeap.insert(20)
-// minHeap.insert(10)
-// minHeap.insert(30)
-// minHeap.insert(5)
-// minHeap.insert(40)
-// minHeap.insert(12)
-// console.log(minHeap)
 
 //Kth largest element in an array
 
@@ -121,6 +112,6 @@ function kthLargest(arr, k){
     }  
 }
 
-kthLargest([101, 500, 435, 15, 100, 200 , 600 , 112, 56, 23], 9)
+// kthLargest([101, 500, 435, 15, 100, 200 , 600 , 112, 56, 23], 9)
 
 

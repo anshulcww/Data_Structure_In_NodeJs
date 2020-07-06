@@ -3,18 +3,20 @@ class BinaryTree{
         this.data = data
         this.left = null
         this.right = null
+        this.next = null
         // For Min Depth Question
         this.depth = 1
     }
 }
 
-let bt = new BinaryTree(1)
-bt.left = new BinaryTree(2)
-bt.right = new BinaryTree(3)
-bt.left.left = new BinaryTree(8)
-bt.left.right = new BinaryTree(4)
-bt.left.left.left = new BinaryTree(10)
-bt.left.left.right =  new BinaryTree(11)
+let bt = new BinaryTree('A')
+bt.left = new BinaryTree('B')
+bt.right = new BinaryTree('C')
+bt.left.left = new BinaryTree('D')
+bt.left.right = new BinaryTree('E')
+bt.right.right = new BinaryTree('F')
+// bt.left.left.left = new BinaryTree('F')
+// bt.left.left.right =  new BinaryTree('F')
 // bt.left.right.left = new BinaryTree(1)
 // bt.left.right.right = new BinaryTree(11)
 // bt.right.left= new BinaryTree(5)
@@ -24,7 +26,60 @@ bt.left.left.right =  new BinaryTree(11)
 // bt.right.right.left= new BinaryTree(4)
 // bt.right.right.right = new BinaryTree(100)
 
-// Find a pair with given sum in BST
+
+// Connect nodes at same level
+// using next pointer 
+function connectNodesAtSameLevel(node){
+    if(node == null){
+        return null
+    }
+    let q = []
+    q[0] = node
+    let temp = null
+    while(q.length> 0){
+        let size = q.length
+        for(var i = 0; i < size; i++){
+            let prev = temp 
+            temp = q.shift()
+            // i > 0 because when i is 0 prev points 
+            // the last node of previous level,  
+            // so we skip i
+            if(i>0){
+                prev.next =  temp
+                // console.log(prev.next)
+            }
+            if(temp.left){
+                q.push(temp.left)
+            }
+            if(temp.right){
+                q.push(temp.right)
+            }
+        }
+        temp.next = null
+    }
+    // console.log(JSON.stringify(node))
+    return node
+}
+connectNodesAtSameLevel(bt)
+// console.log(bt.left.next)
+let a = bt.next != null ? bt.next.data : -1; 
+console.log("next of " + bt.data + " is "
+                   + a); 
+let b = bt.left.next != null ? bt.left.next.data : -1; 
+console.log("next of " + bt.left.data + " is "
+                   + b); 
+let c = bt.right.next != null ? bt.right.next.data : -1; 
+console.log("next of " + bt.right.data + " is "
+                   + c); 
+let d = bt.left.left.next != null ? bt.left.left.next.data : -1; 
+console.log("next of " + bt.left.left.data + " is "
+                   + d); 
+let e = bt.left.right.next != null ? bt.left.right.next.data : -1; 
+
+console.log("next of " + bt.left.right.data + " is "
+                    + e); 
+// console.log(bt.left.right)
+                    // Find a pair with given sum in BST
 function findPair(node, sum, set){
     if(node === null){
         return false

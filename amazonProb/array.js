@@ -1,4 +1,35 @@
 
+//Maximum of all subarrays of size k
+// Uisng Window Sliding technique
+function maxSubarrayK(arr, k){
+    let currMax = 0
+    let deque = []
+    // add element 
+    for(var i = 0; i < k; i++){
+        while(deque.length > 0 && arr[i] >= arr[deque[deque.length - 1]]){
+            deque.pop()
+        }
+        deque.push(i)
+    }
+    for(var i = k; i < arr.length ; i++){
+    console.log(arr[deque[0]])
+        // 1 remove elements which are not in the window
+        
+    while(deque.length > 0 && deque[0] <= i-k){
+        deque.shift()
+    }
+    // 2 remove unwanted elements in the deque
+    while(deque.length > 0 && arr[i] >= arr[deque[deque.length - 1]]){
+        deque.pop()
+    }
+    deque.push(i)
+    // push i
+    }
+    // print max of last window
+    console.log(arr[deque[0]])
+}
+// maxSubarrayK([12, 1, 78, 90, 57, 89, 56], 3)
+
 // Peak Element very important
 function findPeak(arr){
     let start = 0
@@ -35,7 +66,7 @@ function findPeak(arr){
         
     }
 }
-findPeak([100, 80, 60, 50, 20])
+// findPeak([100, 80, 60, 50, 20])
 
 
 

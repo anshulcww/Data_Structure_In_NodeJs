@@ -1,4 +1,35 @@
 
+//Maximum of all subarrays of size k
+// Uisng Window Sliding technique
+function maxSubarrayK(arr, k){
+    let currMax = 0
+    let deque = []
+    // add element 
+    for(var i = 0; i < k; i++){
+        while(deque.length > 0 && arr[i] >= arr[deque[deque.length - 1]]){
+            deque.pop()
+        }
+        deque.push(i)
+    }
+    for(var i = k; i < arr.length ; i++){
+    console.log(arr[deque[0]])
+        // 1 remove elements which are not in the window
+        
+    while(deque.length > 0 && deque[0] <= i-k){
+        deque.shift()
+    }
+    // 2 remove unwanted elements in the deque
+    while(deque.length > 0 && arr[i] >= arr[deque[deque.length - 1]]){
+        deque.pop()
+    }
+    deque.push(i)
+    // push i
+    }
+    // print max of last window
+    console.log(arr[deque[0]])
+}
+// maxSubarrayK([12, 1, 78, 90, 57, 89, 56], 3)
+
 // Search in a row wise and column wise sorted matrix
 // let searchMatrix = [[10, 20, 30, 40], [15, 25, 35, 45], [27, 29, 37, 48], [32, 33, 39, 50]]
 function searchInMatrix(k){
@@ -10,7 +41,7 @@ function searchInMatrix(k){
             return i + " " + j
         }else if(searchMatrix[i][j] > k){
             j--
-        }else if(searchMatrix[i][j] < k){
+        }else if(searchMatrix[i][j] < k){+956
             i++
         }
     }
