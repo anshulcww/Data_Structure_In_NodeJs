@@ -60,7 +60,54 @@ function connectNodesAtSameLevel(node){
     // console.log(JSON.stringify(node))
     return node
 }
-connectNodesAtSameLevel(bt)
+// connectNodesAtSameLevel(bt)
+
+// Using constant extra space
+function connectNodesUsingConstantExtraSpace(node){
+    let p = node
+    p.next = null
+    while(p != null){
+        let q = p
+        while( q != null){
+            if(q.left){
+                if(q.right){
+                    q.left.next = q.right
+                }else{
+                    q.left.next = getNextRight(q)
+                }
+            }
+            if(q.right){
+                q.right.next = getNextRight(q)
+            }
+            q = q.next
+        }
+        if(p.left){
+            p = p.left
+        }else if(p.right){
+            p = p.right
+        }else{
+            p = getNextRight(p)
+        }
+    }
+}
+
+function getNextRight(node){
+    let temp = node.next
+    while(temp != null){
+        if(temp.left){
+            return temp.left
+        }
+        if(temp.right){
+            return temp.right
+        }
+        temp = temp.next
+    }
+    return null
+}
+
+connectNodesUsingConstantExtraSpace(bt)
+
+
 // console.log(bt.left.next)
 let a = bt.next != null ? bt.next.data : -1; 
 console.log("next of " + bt.data + " is "
@@ -78,6 +125,8 @@ let e = bt.left.right.next != null ? bt.left.right.next.data : -1;
 
 console.log("next of " + bt.left.right.data + " is "
                     + e); 
+let f = bt.right.right.next != null ? bt.right.right.nex.data : -1
+console.log("next of " + bt.right.right.data + " is " + f)                    
 // console.log(bt.left.right)
                     // Find a pair with given sum in BST
 function findPair(node, sum, set){
