@@ -1,3 +1,65 @@
+// Implementation of Graph
+class Graph{
+    constructor(noOfVertices){
+        this.noOfVertices = noOfVertices
+        this.adjList  = new Map()
+    }
+    addVertex(v){
+        this.adjList.set(v, [])
+    }
+    addEdge(v, w){
+        this.adjList.get(v).push(w)
+        // FOr Undirected graph 
+        // this.adjList.get(w).push(v)
+    }
+}
+
+let graph =  new Graph(7)
+let vertices = ["A", "B", "C", "D", "E", "F", "G"]
+for(var i = 0; i<vertices.length; i++){
+    graph.addVertex(vertices[i])
+}
+// Add Edges
+graph.addEdge("A", "C")
+graph.addEdge("B", "C")
+graph.addEdge("B","D")
+graph.addEdge("C", "E")
+graph.addEdge("E" , "F")
+graph.addEdge("D" , "F")
+graph.addEdge("F" , "G")
+
+
+// Topological Sorting
+function topologicalSort(g){
+    let stack = []
+    let visitedSet = new Set()
+    for(var i = 0; i<vertices.length; i++){
+        if(!visitedSet.has(vertices[i])){
+            topologicalSortUtil(vertices[i], visitedSet, stack, g)
+        }
+    }
+    let n = stack.length
+    for(var i = 0; i<n; i++){
+        console.log(stack.pop())
+    }
+}
+function topologicalSortUtil(vertex, visitedSet, stack, g){
+    //get all edges of vertex
+    let edges = g.adjList.get(vertex)
+    // stack.push(vertex)
+    visitedSet.add(vertex)
+    for(var i = 0; i<edges.length; i++){
+        if(!visitedSet.has(edges[i])){
+            topologicalSortUtil(edges[i], visitedSet, stack, g)
+        }
+    }
+    stack.push(vertex)
+}
+topologicalSort(graph)
+
+
+
+
 // Minimum iteration required to rot all oranges
 let matrix = [[ 2, 1, 0, 2, 1],[1, 0, 1, 2, 1 ],[1, 0, 0, 2, 1]]
 function countIteration(){
@@ -107,7 +169,7 @@ function isFreshOrange(mat, row, col){
     return row >= 0 && row < matrix.length && col >=0 && col < matrix[0].length && mat[row][col] === 1
 }
 
-console.log(countIteration())
+// console.log(countIteration())
 
 
 
