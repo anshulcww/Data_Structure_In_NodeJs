@@ -46,13 +46,57 @@ class MinHeap{
         this.heapify(0, arr, arr.length)
         return arr
     }
-
 }
 
+// Connect n ropes with minimum cost {MOST _ IMPORTANT}
+// build min heap
+function minCost(arr){
+    // let minHeap = []
+    let cost = 0
+    let size = arr.length-1
+    // Build Heap
+    for(var i = Math.floor(arr.length/2) - 1; i >= 0; i--){
+        heapify(arr, i, size)
+    }
+    while(size > 0){
+        let temp = arr[0]
+        arr[0] = arr[size--]
+        heapify(arr, 0, size)
+        arr[0] =  arr[0] + temp
+        cost = cost + arr[0]
+        heapify(arr, 0, size)
+    }
+    console.log(cost)
+    return cost
+}
+
+function heapify(heap, i, size){
+    let smallest = i
+    let leftChild = 2*i+1
+    let rightChild = 2*i+2
+
+    if(leftChild <= size && heap[smallest] > heap[leftChild]){
+        smallest = leftChild
+    }
+
+    if(rightChild <= size && heap[smallest] > heap[rightChild]){
+        smallest = rightChild
+    }
+
+    if(smallest != i){
+        let temp = heap[i]
+        heap[i] = heap[smallest]
+        heap[smallest] = temp
+        // Re heapify
+        heapify(heap, smallest, size)
+    }
+}
+minCost([4, 3, 2, 6])
+
 // Kth 
-let minHeap = new MinHeap()
-let res = minHeap.buildHeap(4, [130, 20, 30, 40])
-console.log(minHeap.remove(res))
+// let minHeap = new MinHeap()
+// let res = minHeap.buildHeap(4, [130, 20, 30, 40])
+// console.log(minHeap.remove(res))
 
 
 
