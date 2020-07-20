@@ -85,6 +85,9 @@ class Node{
 // Middle Element
 function middleElement(head){
     //console.log(ll)
+    if(head == null){
+        return head
+    }
     let p = head
     // console.log(p.next)
     let q = head
@@ -93,7 +96,7 @@ function middleElement(head){
         q = q.next.next;
         p = p.next;
     }
-    console.log(p)
+    // console.log(p)
     return p
 }
 
@@ -140,20 +143,122 @@ class ListNode{
 
 let reverseHead = null;
 
-var ll = new ListNode(1)
-ll.next = new ListNode(2)
-ll.next.next = new ListNode(3)
-ll.next.next.next = new ListNode(4)
-ll.next.next.next.next = new ListNode(5)
-ll.next.next.next.next.next = new ListNode(6)
-// ll.next.next.next.next.next.next = new ListNode(2)
+var ll = new ListNode(5)
+ll.next = new ListNode(5)
+ll.next.next = new ListNode(15)
+ll.next.next.next = new ListNode(20)
+ll.next.next.next.next = new ListNode(15)
+ll.next.next.next.next.next = new ListNode(10)
+ll.next.next.next.next.next.next = new ListNode(20)
 // ll.next.next.next.next.next.next.next = new ListNode(0)
 
-var ll2 = new ListNode(9)
-ll2.next = new ListNode(10)
-ll2.next.next = new ListNode(11)
-ll2.next.next.next = new ListNode(12)
-ll2.next.next.next.next = new ListNode(13)
+// var ll2 = new ListNode(2)
+// ll2.next = new ListNode(3)
+// ll2.next.next = new ListNode(20)
+// ll2.next.next.next = new ListNode(12)
+// ll2.next.next.next.next = new ListNode(13)
+
+// Remove Duplicates from an Unsorted Linkedlist
+// USING two loops Time Complexity O(n^2) for reducing O(n)
+function removeDupUnSortedLLUsingTwoLoop(node){
+    let p = node
+    while(p != null && p.next != null){
+        let q = p.next
+        let prev = p
+        while(q != null){
+            if(p.data == q.data){
+                prev.next = q.next
+            }
+            prev = q
+            q = q.next
+        }
+        p = p.next
+    }
+    console.log(JSON.stringify(node))
+    return node
+}
+
+removeDupUnSortedLLUsingTwoLoop(ll)
+
+// Remove duplicates from a Sorted LL
+function removeDupSortedLL(node){
+    let p = node
+    while(p != null && p.next != null){
+        if(p.val == p.next.val){
+            let q = p.next.next
+            if(q== null){
+                p.next = null
+            }
+            p.next = q
+        }
+        if(p.val != p.next.val){
+            p = p.next
+        }
+    }
+    console.log(JSON.stringify(node))
+    return node
+}
+// removeDupSortedLL(ll)
+
+// Sort a LL
+function mergeSortLL(node){
+    if(node == null || node.next == null){
+        return node
+    }
+    let middle = middleElement(node)
+    //console.log(middle)
+    let middleNext = middle.next
+    middle.next = null
+    let first = mergeSortLL(node)
+    let second = mergeSortLL(middleNext)
+    let sortedList = mergeTwo(first, second)
+    return sortedList
+}
+// mergeSortLL(ll)
+// console.log(JSON.stringify(ll))
+
+// Merge two sorted Linked list
+function mergeTwo(node1, node2){
+    let p = node1
+    let q = node2
+    let s = null
+    let newHead = null
+    if( p == null) { return q }
+    if( q == null) { return p }
+
+    if(p && q){
+        if(p.val > q.val){
+            s = q
+            q = s.next
+        }else{
+            s = p
+            p = s.next
+        }
+    }
+    newHead = s
+    while( p && q){
+        if(p.val > q.val){
+           s.next =  q
+           s = q
+           q = s.next  
+        }else{
+            s.next = p
+            s = p
+            p = s.next
+        }
+    }
+    if(p == null){
+        s.next = q
+    }
+    if(q == null){
+        s.next = p
+    }
+    // console.log(JSON.stringify(newHead))
+    return newHead
+}
+
+// mergeTwo(ll, ll2)
+
 
 // Add Two Linked List 
 function addTwoLL(node1, node2){
@@ -194,7 +299,7 @@ function addTwoLL(node1, node2){
     console.log(JSON.stringify(resSumLL))
     return resSumLL
 }
-addTwoLL(ll, ll2)
+// addTwoLL(ll, ll2)
 
 function countTotalNodes(head){
     let currCount = 0

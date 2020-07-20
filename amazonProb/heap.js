@@ -48,7 +48,10 @@ class MinHeap{
     }
 }
 
-// Connect n ropes with minimum cost {MOST _ IMPORTANT}
+
+
+
+// Connect n ropes with minimum cost 
 // build min heap
 function minCost(arr){
     // let minHeap = []
@@ -87,11 +90,10 @@ function heapify(heap, i, size){
         let temp = heap[i]
         heap[i] = heap[smallest]
         heap[smallest] = temp
-        // Re heapify
         heapify(heap, smallest, size)
     }
 }
-minCost([4, 3, 2, 6])
+// minCost([4, 3, 2, 6])
 
 // Kth 
 // let minHeap = new MinHeap()

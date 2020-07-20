@@ -35,7 +35,7 @@ function square(number, start, end){
         return square(number, start, mid)
     }
 }
-findSquareRoot(3)
+// findSquareRoot(3)
 
 // function squareRoot(n){
 //     let isNegative = false
@@ -69,3 +69,20 @@ findSquareRoot(3)
 
 // }
 // console.log(squareRoot(36))
+
+// Print Prime Numbers
+function printPrime(n){
+   let flag = 0 
+    for(var i = 2; i<= n; i++){
+        for(var j = 2; j <= i; j++){
+            if(j == i){
+                console.log(i)
+            }
+            if(i % j == 0){
+                break
+            }
+           
+        }
+    }
+} 
+printPrime(7)

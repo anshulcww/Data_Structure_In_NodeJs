@@ -1,3 +1,32 @@
+//Partition a set into two subsets such that the difference of subset sums is minimum
+
+
+
+// Subset Sum problem 
+// TRICK - if (A[i] > j)
+// DP[i][j] = DP[i-1][j]
+// else 
+// DP[i][j] = DP[i-1][j] OR DP[i-1][sum-A[i]]
+
+function isSubset(arr, total){
+    let matrix = [[]]
+    for(var i = 0; i<=arr.length; i++){
+        matrix[i][0] = true
+    }
+    for(var i = 0; i<arr.length; i++){
+        for(var j = 1; j<= total; j++){
+            if(arr[i] > j){
+                matrix[i][j] = matrix[i-1][j]
+            }else{
+                matrix[i][j] = matrix[i-1][j] || matrix[i-1][j-arr[i]]
+            }
+        }
+    }
+    // console.log(matrix[arr.length][total])
+    return matrix[arr.length][total]
+}
+// isSubset([3, 4, 5, 2], 6)
+
 // Minimum jump to reach end
 function minJump(input){
     let minJumps = [0]
@@ -20,7 +49,7 @@ function minJump(input){
     console.log(path)
     return minJumps
 }
-console.log(minJump([2, 3, 1, 1, 2, 4, 2, 0, 1, 1]))
+// console.log(minJump([2, 3, 1, 1, 2, 4, 2, 0, 1, 1]))
 
 
 // Max rectangle histogram area

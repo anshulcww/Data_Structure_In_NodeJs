@@ -1,11 +1,24 @@
 
+// Remove duplicates using time complexity O(n) and space complexity O(1)
+function removeDup(arr){
+    for(var i = 0; i<arr.length; i++){
+        if(arr[Math.abs(arr[i])] > 0){
+            arr[Math.abs(arr[i])] = -arr[Math.abs(arr[i])]
+        }else{
+            console.log(Math.abs(arr[i]))
+        }
+    }
+}
+removeDup([1, 2,3, 4, 1, 2,6, 3, 8, 9, 6, 4])
+
+
 //Find k closest elements to a given value in a sorted array
 function kClosestNumbersSortedArray(arr, x, k){
     
 }
 
-kClosestNumbersSortedArray([12, 16, 22, 30, 35, 39, 42, 
-    45, 48, 50, 53, 55, 56] , 35, 4)
+// kClosestNumbersSortedArray([12, 16, 22, 30, 35, 39, 42, 
+//     45, 48, 50, 53, 55, 56] , 35, 4)
 
 //Maximum of all subarrays of size k
 // Uisng Window Sliding technique
