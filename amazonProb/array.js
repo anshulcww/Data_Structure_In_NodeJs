@@ -1,3 +1,53 @@
+// find-maximum-product-of-a-triplet-in-array
+function maxProdTrip(arr){
+    if(arr.length < 3){
+        return -1
+    }
+
+    let max1 = Number.MIN_SAFE_INTEGER
+    let max2 = Number.MIN_SAFE_INTEGER
+    let max3 = Number.MIN_SAFE_INTEGER
+
+    let min1 = Number.MAX_SAFE_INTEGER
+    let min2 = Number.MAX_SAFE_INTEGER
+    
+    // console.log(max1, " ",  max2, " ", max3, " ")
+    // console.log(min1, " ",  min2)
+    
+    for(var i = 0; i < arr.length; i++){
+        if(arr[i]> max1){
+            max3 = max2
+            max2 = max1
+            max1 = arr[i]
+        }else if(arr[i] > max2){
+            max3 = max2
+            max2 = arr[i]
+        }else if(arr[i] > max3){
+            max3 = arr[i]
+        }
+
+        if(arr[i] < min1){
+            min2 = min1
+            min1 = arr[i]
+        }else if(arr[i] < min2){
+            min2 = arr[i]
+        }
+        // return max of product of all max1, max2 & max3 or product of min1, min2 & max1
+       
+
+    }
+    console.log(max1, " ",  max2, " ", max3, " ")
+    console.log(min1, " ",  min2)
+    let p1 = max1*max2*max3
+    let p2 = max1*min1*min2
+    console.log(Math.max(p1, p2))
+    return Math.max(max1*max2*max3, max1*min1*min2) 
+}
+
+maxProdTrip([-10, -3, -5, -6, -20])
+
+
+
 
 // Remove duplicates using time complexity O(n) and space complexity O(1)
 function removeDup(arr){
@@ -9,7 +59,7 @@ function removeDup(arr){
         }
     }
 }
-removeDup([1, 2,3, 4, 1, 2,6, 3, 8, 9, 6, 4])
+// removeDup([1, 2,3, 4, 1, 2,6, 3, 8, 9, 6, 4])
 
 
 //Find k closest elements to a given value in a sorted array

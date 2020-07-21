@@ -1,0 +1,8 @@
+Q1: What is an Api?
+Ans: 1 Application Program Interface
+2. Contract provided by one piece of software to another.
+3. Structured Response and Request
+
+
+Q2: What is REST?
+Ans: 1 Representational State Transfer
