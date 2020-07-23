@@ -1,3 +1,25 @@
+// FInd Minimum Element in a sorted and rotated Array
+function minElementInASortedAndRotatedArray(arr){
+    let l = 0
+    let h = arr.length - 1
+    let mid = 0
+    while(l < h){
+        mid = Math.floor(l + (h -l)/2)
+        if(arr[mid-1] > arr[mid] && arr[mid] < arr[mid+1]){
+            console.log(arr[mid])
+            return arr[mid]
+        }
+        if(arr[mid] < arr[h]){
+            h = mid 
+        }else{
+            l = mid
+        }
+    }
+    console.log(arr[mid])
+    return arr[mid]
+}
+minElementInASortedAndRotatedArray([1, 2, 3, 4])
+
 // find-maximum-product-of-a-triplet-in-array
 function maxProdTrip(arr){
     if(arr.length < 3){
@@ -44,7 +66,7 @@ function maxProdTrip(arr){
     return Math.max(max1*max2*max3, max1*min1*min2) 
 }
 
-maxProdTrip([-10, -3, -5, -6, -20])
+// maxProdTrip([-10, -3, -5, -6, -20])
 
 
 

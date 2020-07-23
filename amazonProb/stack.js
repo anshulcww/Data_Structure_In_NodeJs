@@ -13,6 +13,30 @@ class Stack{
     }
 }
 
+
+//Implement Stack using two Queues
+// class ImplementStackUsingTwoQueue{
+//     constructor(){
+//         this.queue1 = []
+//         this.queue2 = []
+//     }
+//     //push method
+//     enqueue(val){
+//         this.queue1.push(val)
+//     }
+//     dequeue(){
+//         this.queue1.pop()
+//     }
+// }
+
+// function impleStackUsingQueue(q1){
+
+// }
+
+impleStackUsingQueue()
+
+
+
 // Stock span problem
 function calStockSpan(inputArr){
     let stack = []
@@ -28,4 +52,4 @@ function calStockSpan(inputArr){
     }
     return span
 }
-console.log(calStockSpan([10, 4, 5, 90, 120, 80]))
+// console.log(calStockSpan([10, 4, 5, 90, 120, 80]))
