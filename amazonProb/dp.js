@@ -1,6 +1,27 @@
-//Partition a set into two subsets such that the difference of subset sums is minimum
+// Min Cost Path
+function minCostPath(cost){
+    let totalCostArray = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    totalCostArray[0][0] = cost[0][0]
+    // Inserting first row 
+    for(var i = 1; i<cost.length; i++){
+        totalCostArray[0][i] = cost[0][i] + totalCostArray[0][i-1]        
+    }
+    
+    // Inserting first column
+    for(var i = 1; i < cost.length; i++){
+        totalCostArray[i][0] = cost[i][0] + totalCostArray[i-1][0]
+    }
 
-
+    // Inserting rest of col
+    for(var i = 1; i < cost.length; i++){
+        for(var j = 1; j < cost.length; j++){
+            totalCostArray[i][j] = cost[i][j] + Math.min(totalCostArray[i-1][j-1], totalCostArray[i-1][j], totalCostArray[i][j-1]) 
+        }
+    }
+    console.log(totalCostArray[cost.length-1][cost.length-1])
+}
+let cost = [[1, 2, 3], [4, 8, 2], [1, 5, 3]]
+minCostPath(cost)
 
 // Subset Sum problem 
 // TRICK - if (A[i] > j)

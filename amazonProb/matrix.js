@@ -1,3 +1,34 @@
+let matrix = [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18]]
+
+// Print 2D Matrix in DIagonal Order
+function printDiagonal(){
+    let m = matrix.length - 1
+    let n = matrix[0].length - 1
+    //For 1st column
+    for(var k = 0; k <= m; k++){
+        let i = k
+        let j = 0
+        while(i>=0 && j <= n){
+            console.log(matrix[i][j])
+            i--;
+            j++;
+        }
+    }
+
+    // For last row
+    for(var k = 1; k <= n; k++){
+        let i = m
+        let j = k
+        while( j <= n && i>=0){
+            console.log(matrix[i][j])
+            i--
+            j++
+        }
+       
+    }
+}
+printDiagonal()
+
 
 //Maximum of all subarrays of size k
 // Uisng Window Sliding technique
@@ -151,7 +182,6 @@ function knows(a,b){
 
 
 // Print K’th element in spiral form of matrix
-// let matrix = [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18]]
 
 function kthElementInSpiralForm(mat, k){
     let row = 0

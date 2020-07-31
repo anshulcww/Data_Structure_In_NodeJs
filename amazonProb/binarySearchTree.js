@@ -88,7 +88,29 @@ bst.left.left = new BinarySearchTree(-5)
 bst.right = new BinarySearchTree(19)
 bst.right.left = new BinarySearchTree(17)
 bst.right.right = new BinarySearchTree(21)
-console.log(JSON.stringify(bst))
+// console.log(JSON.stringify(bst))
+
+// Kth Element in a BST
+function kthElementInBst(node, k){
+    if(node === null){
+        return 0
+    }
+    let left = kthElementInBst(node.left, k)
+    if(left){
+        return left
+    }
+    k = k-1
+    if(k == 0){
+        return node.val
+    }
+    let right = kthElementInBst(node.right, k)
+    return right
+}
+
+kthElementInBst(bst, 5)
+
+
+
 // check if a tree is a binary search tree or not
 function checkBST(node, min, max){
     if(node === null){
@@ -105,4 +127,4 @@ function checkBST(node, min, max){
 let minValue = Number.NEGATIVE_INFINITY
 let maxValue = Number.POSITIVE_INFINITY
 // console.log(maxValue)
-console.log(checkBST(bst, minValue, maxValue))
+// console.log(checkBST(bst, minValue, maxValue))

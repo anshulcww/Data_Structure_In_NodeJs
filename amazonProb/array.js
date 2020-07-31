@@ -1,3 +1,27 @@
+// Count Inversion in an Array
+// Formally speaking, two elements a[i] and a[j] form an inversion if a[i] > a[j] and i < j
+
+// Using Merge Sort
+function countInversionUsingMergeSort(){
+
+}
+
+countInversionUsingMergeSort([])
+
+//Using Brute Force
+function countInversion(arr){
+    let inversion = 0
+    for(var i = 0; i< arr.length; i++){
+        for(var j = i+1; j < arr.length; j++){
+            if(arr[i] > arr[j]){
+                inversion++
+            }
+        }
+    }
+    console.log(inversion)
+}
+countInversion([3, 1, 2])
+
 // FInd Minimum Element in a sorted and rotated Array
 function minElementInASortedAndRotatedArray(arr){
     let l = 0
@@ -18,7 +42,7 @@ function minElementInASortedAndRotatedArray(arr){
     console.log(arr[mid])
     return arr[mid]
 }
-minElementInASortedAndRotatedArray([1, 2, 3, 4])
+// minElementInASortedAndRotatedArray([1, 2, 3, 4])
 
 // find-maximum-product-of-a-triplet-in-array
 function maxProdTrip(arr){
