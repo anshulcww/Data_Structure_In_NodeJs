@@ -85,12 +85,13 @@ function countIteration(){
             if(z != size-1){
                 let top = q.shift()
                 console.log(q)
+
                 // console.log(z)
                 let x = Number(top[0])
                 let y = Number(top[2]) 
                 // console.log(top)
+
                 //for left side
-                
                 if(isFreshOrange(matrix, x, y-1)){
                     q.push(x + "," + Number(y-1))
                     matrix[x][y-1] = 2
@@ -131,10 +132,6 @@ function countIteration(){
                
             // }
         }
-        // while(!ifPeekDelimeter(q[0])){
-        //    //console.log(q)
-            
-        // }
         q.shift()
         // console.log(q)
         boolean = false
@@ -144,6 +141,7 @@ function countIteration(){
         }
 
     }
+
     return ifAnyFreshOrangesLeft(matrix) ? -1 : count;
 
 }
