@@ -77,6 +77,20 @@ let toyota = new Car("Toyota")
   let nums =  [1, 2, 2, 3]
   //console.log([...new Set(nums)])
 
+  // Q8 - Print Output
+  const x = [1,2,3,4]
+  x[-1] = -1
+  // console.log(x[x.indexOf(10000)]) // Output -1 ..... x.indexOf(10000) gives you -1 .... Check negative indexes concept in an array
+  
+  // Q9 - Print Output
+  let arr = [1, 2 , 15, 30, 45, 7, 80]
+  console.log(arr.sort()) // it will sort as string // [1, 15, 2,30, 45, 7, 80] // we have to return 
+
+  // Solution
+  console.log(arr.sort((a, b) => {
+    return a<b
+  }))
+
   var Employee = function (name, company, salary) {
   this.name = name || "";       //Public attribute default value is null
   this.company = company || ""; //Public attribute default value is null
